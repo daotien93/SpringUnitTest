@@ -36,16 +36,6 @@ public class StudentTests {
     }
 
     @Test
-    @Rollback(value = false)
-    public void findByKeyWordStudentFails() {
-        String fullName = "Eric";
-        Student student = studentRepository.findByFullName(fullName);
-
-        assertThat(student.getFullName()).isEqualTo(fullName);
-    }
-
-    @Test
-    @Rollback(value = false)
     public void updateStudent() {
         String fullName = "Eric Dang";
 
@@ -74,5 +64,12 @@ public class StudentTests {
 
         assertTrue(testBeforeDeleteStudent);
         assertFalse(testAfterDeleteStudent);
+    }
+
+    @Test
+    public void findStudentById() {
+        Integer id = 2;
+        Student student = studentRepository.findStudentsById(id);
+        assertThat(student.getId()).isEqualTo(id);
     }
 }
